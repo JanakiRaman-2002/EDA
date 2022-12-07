@@ -1,0 +1,43 @@
+---
+title: "20BPS1077-lab1"
+author: "Janakiraman"
+date: "07/12/2022"
+output: html_document
+---
+
+```{r}
+library(MASS)
+library(Hmisc)
+survey
+
+survey1 <- survey
+survey1
+newsurvey <- survey
+
+summary(survey1)
+
+a = dim(survey1)
+total_obs = a[1]*a[2]
+missing_perc = (sum(is.na(survey1))*100)/total_obs
+missing_perc
+
+survey2 = na.omit(survey1)
+survey2
+
+newsurvey
+
+#Sex imputation
+factr = as.factor(newsurvey$Sex)
+intr <- as.numeric(factr)
+newsurvey$Sex = intr
+newsurvey$Sex <- impute(newsurvey$Sex, mode)
+is.na(newsurvey$Sex)
+sum(is.na(newsurvey$Sex))
+newsurvey$Sex[newsurvey$Sex==1] <- "Female"
+newsurvey$Sex[newsurvey$Sex==2]<- "Male"
+
+#Mean Median Mode
+
+
+```
+
